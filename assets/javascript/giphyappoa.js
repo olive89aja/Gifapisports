@@ -12,12 +12,12 @@ let queryurl = "https://api.giphy.com/v1/gifs/search?q="+sport+"wAwF7AiQJSREASGc
 
 
 
-$ajax ({url:queryurl, method:"GET"})
-        .done(function(response)
+$.ajax ({url:queryurl, method:"GET"})
+        .then(function(response)
         
         {
-            $("#sportsbuttons").empty();
-            var answers=response.data;         
+            // $("#sportsbuttons").empty();
+            // var answers=response.data;         
         
 
 
@@ -25,7 +25,7 @@ for (let jj =0; jj<10; jj++)
     {
        
     var answer =("<div>")
-    answer.addClass("sportspictures")
+    answer.attr("sports-name",sports[jj])
     $("#sportsanswers").append(answer);
 
     var sportimage = ("<img>")
@@ -39,11 +39,12 @@ buttonsWork();
 
 function buttonsWork() {
 
-    $("#sportsanswers2").empty();
+    //$("#sportsanswers2").empty();
 
     sports.forEach(sport => {
-        var sport=("<button>")
-        sport.attr("data-name",sports)
-        $("#sportsanswers2").append(sport);
+        var buttons=$("<button>");
+        buttons.attr("data-name",sport);
+        buttons.text(sport)
+        $("#sportsanswers2").append(buttons);
     })
 }
