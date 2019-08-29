@@ -1,3 +1,4 @@
+
 $(document).ready (function(){
 
     var sports = ["Baseball", "Basketball", "Boxing", "Cycling", "Football", "Handball", "Golf", "Rugby", "Soccer", "Tennis"];
@@ -25,20 +26,26 @@ $.ajax ({url:queryurl, method:"GET"})
         
         {
 
+            $("#sportsanswers2").empty();            
              var answers = response.data;         
         
 
-for (let jj =0; jj<10; jj++)
+for (let jj =0; jj<sports.length; jj++)
     {
        
-    var answer =("<div>")
-    $(answer).attr("sports-name",sports[jj])
-    $("#sportsanswers").append(answer);
-
-    var sportimage = ("<img>")
-    $("#sportsanswers").append(sportimage);
+    // var answer =("<div>")
+    // $(answer).attr("data-name",sports[jj])
+    // $("#sportsanswers2").append(answer);
+    
+    var sportimage = $("<img>");
+    var imgURL = (answers[jj].images.downsized.url)
+    sportimage.attr("src", imgURL);
+    $("#sportsanswers2").append(sportimage);
 }
         })
+
+
+        //These buttons are directly inspired by exercise number 10 in Nueva. 
 
          function buttonsWork() {
 
@@ -68,4 +75,4 @@ for (let jj =0; jj<10; jj++)
 
               
 
-     buttonsWork();
+   
