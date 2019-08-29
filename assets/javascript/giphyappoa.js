@@ -35,15 +35,15 @@ for (let jj =0; jj<10; jj++)
     }})
 
 
-//buttonsWork();
+buttonsWork();
 
-// function buttonsWork() {
+function buttonsWork() {
 
-//     $("#sportsanswers2").empty();
+    $("#sportsanswers2").empty();
 
-//     sports.forEach(sport => {
-//         var sport=("<button>")
-//         sport.attr("data-name",sports)
-//         $("#sportsanswers2").append(sport);
-//     })
-
+    sports.forEach(sport => {
+        var sport=("<button>")
+        sport.attr("data-name",sports)
+        $("#sportsanswers2").append(sport);
+    })
+}
