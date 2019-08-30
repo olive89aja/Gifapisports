@@ -6,7 +6,7 @@ $(document).ready (function(){
 
     var topics = ["Baseball", "Basketball", "Boxing", "Cycling", "Football", "Handball", "Golf", "Rugby", "Soccer", "Tennis"];
 
-
+    
    
 
 
@@ -14,13 +14,12 @@ $(document).ready (function(){
 
 Sportsgifs();
 
-$(document).on("click", ".sportsbuttons", Sportsgifs);
-
 
 function Sportsgifs() {
-//not sure were to specify limit 10.I think it is ten by default
 
-const sport = $(this).attr("data-name");
+    
+    
+const sport = ""//$(this).attr("data-name");
 var queryurl = "https://api.giphy.com/v1/gifs/search?q=" + sport + "&api_key=wAwF7AiQJSREASGcU6UxYjhfA2gpSxVq&limit=10";
 
 
@@ -30,24 +29,24 @@ $.ajax ({url:queryurl, method:"GET"})
         
        {
          
-        $("#sportsanswers2").empty();            
-             var answers = response.data;         
+        $("#sportsanswers2").empty();           
+        var results = response.data;         
         
 
-
-for (let jj =0; jj<answers.length; jj++)
+        
+for (let jj =0; jj<results.length; jj++)
     {
       
     var sportsgifsDiv =$("<div>")
     
     //For the rating part, the code is inspired by exercise 13
-    var rating = answers[jj].rating
+    var rating = results[jj].rating
     var p = $("<p>").text("Rating: " + rating);
 
   
     
     var sportimage = $("<img>");
-    var imgURL = (answers[jj].images.downsized.url)
+    var imgURL = (results[jj].images.downsized.url)
     sportimage.attr("src", imgURL);
 
     sportsgifsDiv.append(p);
@@ -60,29 +59,41 @@ for (let jj =0; jj<answers.length; jj++)
 
         //These buttons are directly inspired by exercise number 10 in Nueva. 
 
-         function buttonsWork() {
+        //buttonwork() here
+        function buttonsWork() {
 
-         $("#sportsanswers").empty();
-        
-      
-        for (let i = 0; i < topics.length; i++) {
+            $("#sportsanswers").empty();
+            
+         
+           for (let i = 0; i < topics.length; i++) {
+   
+                
+               var buttons = $("<button>");
+              
+               buttons.addClass("sportsbuttons");
+               
+               buttons.attr("data-name", topics[i]);
+               
+               buttons.text(topics[i]);
+               
+               $("#sportsanswers").append(buttons);
+         
+            }
+           }
 
-             
-            var buttons = $("<button>");
+           $("#add-sport").on("click", function (event){
+            event.preventDefault();
+
+            var sport =$("#topic-input").val().trim();
+
+            topics.push(sport);
+
+           });
+
+           $(document).on("click", ".sportsbuttons", Sportsgifs); 
            
-            buttons.addClass("sportsbuttons");
-            
-            buttons.attr("data-name", topics[i]);
-            
-            buttons.text(topics[i]);
-            
-            $("#sportsanswers").append(buttons);
-          }
-        }
-    
-    
-        buttonsWork();
- 
+       
+           buttonsWork();
     }})
 
     
