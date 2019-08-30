@@ -29,21 +29,6 @@ function buttonsWork() {
      }
    }
 
-   $(".").on("click", function() {
-
-    var state = $(this).attr("data-state");
-   console.log(state);
-   
-    if (state === "still") {
-      $(this).attr("src", $(this).attr("data-animate"));
-      $(this).attr("data-state", "animate");
-    } else {
-      $(this).attr("src", $(this).attr("data-still"));
-      $(this).attr("data-state", "still");
-    }
-  });      
-
-
    $("#add-sport").on("click", function(event) {
     // Preventing the buttons default behavior when clicked (which is submitting a form)
     event.preventDefault();
@@ -89,7 +74,7 @@ for (let jj =0; jj<results.length; jj++)
 
   
     var sportimage = $("<img>");
-    sportimage.attr("src", results[jj].images.fixed_height.url);
+    sportimage.attr("src", results[jj].images.fixed_height_still.url);
     sportimage.attr("data-still", results[jj].images.fixed_height_still.url);
     sportimage.attr("data-animate", results[jj].images.fixed_height.url);
     sportimage.attr("data-state", "still");
@@ -97,13 +82,24 @@ for (let jj =0; jj<results.length; jj++)
     sportsgifsDiv.append(p);
     sportsgifsDiv.append(sportimage);
 
-    $("#sportsanswers2").prepend(sportsgifsDiv);
+    $("#sportsanswers2").append(sportsgifsDiv);
 }
         })
 
     }})
         
 //   I copy pasted this code from exercise 15
- 
-    
-     
+  $("body").on("click", function() {
+
+    var state = $(this).attr("data-state");
+   console.log(state);
+   
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+  });      
+
