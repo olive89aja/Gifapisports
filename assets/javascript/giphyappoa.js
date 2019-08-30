@@ -29,6 +29,21 @@ function buttonsWork() {
      }
    }
 
+   $(".").on("click", function() {
+
+    var state = $(this).attr("data-state");
+   console.log(state);
+   
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+  });      
+
+
    $("#add-sport").on("click", function(event) {
     // Preventing the buttons default behavior when clicked (which is submitting a form)
     event.preventDefault();
@@ -74,11 +89,11 @@ for (let jj =0; jj<results.length; jj++)
 
   
     var sportimage = $("<img>");
-    var imgURL = (results[jj].images.downsized.url)
-    sportimage.attr("src", imgURL);
-    //  sportimage.attr("data-still", results[jj].images.downsized_still.url);
-    //  sportimage.attr("data-animate", results[jj].images.downsized_animate.url);
-    //  sportimage.attr("data-state", "still");
+    sportimage.attr("src", results[jj].images.fixed_height.url);
+    sportimage.attr("data-still", results[jj].images.fixed_height_still.url);
+    sportimage.attr("data-animate", results[jj].images.fixed_height.url);
+    sportimage.attr("data-state", "still");
+    sportimage.addClass('gif');
     sportsgifsDiv.append(p);
     sportsgifsDiv.append(sportimage);
 
@@ -88,23 +103,7 @@ for (let jj =0; jj<results.length; jj++)
 
     }})
         
-        
-       
 //   I copy pasted this code from exercise 15
-  $(".gif").on("click", function() {
-
-    var state = $(this).attr("data-state");
-   console.log(state);
-   
-    if (state === "still") {
-      $(this).attr("src", $(this).attr("data-animate"));
-      $(this).attr("data-state", "animate");
-    } else {
-      $(this).attr("src", $(this).attr("data-still"));
-      $(this).attr("data-state", "still");
-    }
-  });      
-
-
+ 
     
      
