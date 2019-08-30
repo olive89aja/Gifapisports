@@ -4,7 +4,7 @@
 $(document).ready (function(){
    
 
-    var sports = ["Baseball", "Basketball", "Boxing", "Cycling", "Football", "Handball", "Golf", "Rugby", "Soccer", "Tennis"];
+    var topics = ["Baseball", "Basketball", "Boxing", "Cycling", "Football", "Handball", "Golf", "Rugby", "Soccer", "Tennis"];
 
 
    
@@ -21,12 +21,12 @@ function Sportsgifs() {
 //not sure were to specify limit 10.I think it is ten by default
 
 const sport = $(this).attr("data-name");
-var queryurl = "https://api.giphy.com/v1/gifs/search?q=" + sport + "&api_key=wAwF7AiQJSREASGcU6UxYjhfA2gpSxVq";
+var queryurl = "https://api.giphy.com/v1/gifs/search?q=" + sport + "&api_key=wAwF7AiQJSREASGcU6UxYjhfA2gpSxVq&limit=10";
 
 
 
 $.ajax ({url:queryurl, method:"GET"})
-        .done(function(response)
+        .then(function(response)
         
        {
          
@@ -38,14 +38,22 @@ $.ajax ({url:queryurl, method:"GET"})
 for (let jj =0; jj<answers.length; jj++)
     {
       
-    // var answer =("<div>")
-    // $(answer).attr("data-name",sports[jj])
-    // $("#sportsanswers2").append(answer);
+    var sportsgifsDiv =$("<div>")
+    
+    //For the rating part, the code is inspired by exercise 13
+    var rating = answers[jj].rating
+    var p = $("<p>").text("Rating: " + rating);
+
+  
     
     var sportimage = $("<img>");
     var imgURL = (answers[jj].images.downsized.url)
     sportimage.attr("src", imgURL);
-    $("#sportsanswers2").prepend(sportimage);
+
+    sportsgifsDiv.append(p);
+    sportsgifsDiv.append(sportimage);
+
+    $("#sportsanswers2").prepend(sportsgifsDiv);
 }
         })
 
@@ -57,16 +65,16 @@ for (let jj =0; jj<answers.length; jj++)
          $("#sportsanswers").empty();
         
       
-        for (var i = 1; i < sports.length; i++) {
+        for (let i = 0; i < topics.length; i++) {
 
              
             var buttons = $("<button>");
            
             buttons.addClass("sportsbuttons");
             
-            buttons.attr("data-name", sports[i]);
+            buttons.attr("data-name", topics[i]);
             
-            buttons.text(sports[i]);
+            buttons.text(topics[i]);
             
             $("#sportsanswers").append(buttons);
           }
