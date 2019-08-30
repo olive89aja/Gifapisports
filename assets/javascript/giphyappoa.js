@@ -44,6 +44,7 @@ function buttonsWork() {
   });
 
 
+
 $(document).on("click", ".sportsbuttons", Sportsgifs); 
 function Sportsgifs() {
 //not sure were to specify limit 10.I think it is ten by default
@@ -52,9 +53,7 @@ const sport = $(this).attr("data-name");
 
 var queryurl = "https://api.giphy.com/v1/gifs/search?q=" + sport + "&api_key=wAwF7AiQJSREASGcU6UxYjhfA2gpSxVq&limit=10";
 
-$( document ).ajaxStart(function() {
-    $( "<img>" ).hide();
-  });
+
 
 $.ajax ({url:queryurl, method:"GET"})
         .then(function(response){
@@ -74,11 +73,12 @@ for (let jj =0; jj<results.length; jj++)
     var p = $("<p>").text("Rating: " + rating);
 
   
-    
     var sportimage = $("<img>");
     var imgURL = (results[jj].images.downsized.url)
     sportimage.attr("src", imgURL);
-
+    //  sportimage.attr("data-still", results[jj].images.downsized_still.url);
+    //  sportimage.attr("data-animate", results[jj].images.downsized_animate.url);
+    //  sportimage.attr("data-state", "still");
     sportsgifsDiv.append(p);
     sportsgifsDiv.append(sportimage);
 
@@ -87,13 +87,24 @@ for (let jj =0; jj<results.length; jj++)
         })
 
     }})
-        //These buttons are directly inspired by exercise number 10 in Nueva. 
+        
         
        
-        
+//   I copy pasted this code from exercise 15
+  $(".gif").on("click", function() {
 
-          
-    
-        
+    var state = $(this).attr("data-state");
+   console.log(state);
+   
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+  });      
+
+
     
      
