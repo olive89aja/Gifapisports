@@ -1,0 +1,26 @@
+body {
+    background-color:yellow
+}
+
+#topic-form {
+    position:sticky;
+}
+
+
+.sportsbuttons {
+    width: 25%;
+    
+}
+
+.sportsbuttons:hover {
+    color:purple;
+}
+
+.sportsbuttons:active {
+    color:blue;
+}
+
+.sportsbuttons:focus {
+    
+    background-color: orange;
+}

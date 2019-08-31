@@ -89,7 +89,7 @@ for (let jj =0; jj<results.length; jj++)
     }})
         
 //   I copy pasted this code from exercise 15
-  $("body").on("click", function() {
+  $("body").on("click", ".gif", function() {
 
     var state = $(this).attr("data-state");
    console.log(state);
