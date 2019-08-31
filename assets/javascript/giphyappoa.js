@@ -96,7 +96,7 @@ for (let jj =0; jj<results.length; jj++)
     }})
         
 //This code and this logic were used in exercise 15. We simulate the play/pause function
-//thanks to the fact that gifs have to state, still and animate. 
+//thanks to the fact that gifs have two state, still and animate. 
   $("body").on("click", ".gif", function() {
 
     var state = $(this).attr("data-state");
