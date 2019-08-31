@@ -1,17 +1,12 @@
 body {
     background-color:yellow
 }
-/*
-#topic-form {
-    position:sticky;
-}
-*/
 
 .sportsbuttons {
     width: 25%;
     
 }
-/*Source W3schools, Google*/
+/*Sources W3schools, Google, Trivia homework*/
 
 .sportsbuttons:hover {
     color:purple;
@@ -21,8 +16,22 @@ body {
     color:blue;
 }
 
-.sportsbuttons:focus {
-    
+.sportsbuttons:focus {   
     background-color: orange;
 }
 
+/*We do this media query to change the background color 
+and introduce padding for iPhone*/
+@media screen and (max-width: 640px) {
+    body {
+        background-color:white;
+        padding: 20px 20px;
+    }
+}
+/*This media query is for iPad*/
+@media screen and (max-width: 768px) {
+    body {
+        background-color:beige;
+        padding: 40px 40px;
+    }
+}
