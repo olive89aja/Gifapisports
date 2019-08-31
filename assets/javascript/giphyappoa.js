@@ -1,13 +1,14 @@
 
 $(document).ready (function(){
    
-
+//we have to use var not const because we want to add sports later in the array
     var topics = ["Baseball", "Basketball", "Boxing", "Cycling", "Football", "Handball", "Golf", "Rugby", "Soccer", "Tennis"];
 
 
 
-//we have to use var not const because we want to add sports later in the array
 
+//This function creates buttons for each sport. We call it right away 
+//and we want these buttons to be created in the div element with a sportsanswers id 
 buttonsWork(); 
 function buttonsWork() {
 
@@ -29,16 +30,18 @@ function buttonsWork() {
      }
    }
 
+//This function allows the user to add his/her own sport button to the ten existing ones.
+//This is directly inspired by exercise 8
    $("#add-sport").on("click", function(event) {
-    // Preventing the buttons default behavior when clicked (which is submitting a form)
+    
     event.preventDefault();
-    // This line grabs the input from the textbox
+    //We use trim() here to deal with white spaces 
     var sport = $("#topic-input").val().trim();
 
-    // Adding the movie from the textbox to our array
+    // The new sport is stored in the topics array
     topics.push(sport);
 
-    // Calling renderButtons which handles the processing of our movie array
+    // We call our buttons function to transform the user request into a button
     buttonsWork();
     
   });
@@ -46,8 +49,11 @@ function buttonsWork() {
 
 
 $(document).on("click", ".sportsbuttons", Sportsgifs); 
+
+//This function contains the Ajax call. It was inspired by Ajax calls made in class as well 
+//as projects I saw on Github.
 function Sportsgifs() {
-//not sure were to specify limit 10.I think it is ten by default
+
 
 const sport = $(this).attr("data-name");
 
@@ -72,7 +78,8 @@ for (let jj =0; jj<results.length; jj++)
     var rating = results[jj].rating
     var p = $("<p>").text("Rating: " + rating);
 
-  
+        
+//   This is directly inspired by exercise 15. This time data attributes are given to dynamic urls.  
     var sportimage = $("<img>");
     sportimage.attr("src", results[jj].images.fixed_height_still.url);
     sportimage.attr("data-still", results[jj].images.fixed_height_still.url);
@@ -88,7 +95,8 @@ for (let jj =0; jj<results.length; jj++)
 
     }})
         
-//   I copy pasted this code from exercise 15
+//This code and this logic were used in exercise 15. We simulate the play/pause function
+//thanks to the fact that gifs have to state, still and animate. 
   $("body").on("click", ".gif", function() {
 
     var state = $(this).attr("data-state");
